@@ -1,2 +1,4 @@
+/spicepods
 /venv
 *.db
+spicepod.yaml
