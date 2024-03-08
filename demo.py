@@ -4,7 +4,7 @@ from spicepy import Client
 import threading
 
 SPICEAI_API_KEY = '3232|f42bb127dceb48cab83437264897b06a'
-LARGE_SQL_QUERY = 'SELECT block_timestamp, block_number, trace.hash FROM eth.recent_traces trace JOIN eth.recent_transactions trans ON trace.transaction_hash = trans.hash ORDER BY trans.block_number DESC;'
+LARGE_SQL_QUERY = 'SELECT * FROM eth.recent_traces trace JOIN eth.recent_transactions trans ON trace.transaction_hash = trans.hash ORDER BY trans.block_number DESC;'
 
 ###########################
 #   Spice.ai Platform     #
