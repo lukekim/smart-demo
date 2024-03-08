@@ -126,3 +126,30 @@ sql> exit
 ```
 
 Open `demo.py` again, comment out the first code block. Note line 28 `client = Client(SPICEAI_API_KEY, 'grpc://127.0.0.1:50051')` configuring the SDK to use the local Spice runtime.
+
+## Predictions
+
+In Spice.ai playground [spice.ai/lukekim/smart/playground](https://spice.ai/lukekim/smart/playground), show there is no data in last 30 minutes:
+
+```sql
+SELECT *
+FROM lukekim.smart.drive_stats
+WHERE time_unix_nano / 1e9 > (UNIX_TIMESTAMP() - 1800) -- show data in last half hour
+ORDER BY time_unix_nano DESC
+```
+
+Start telegraf to collect local disk data. Explain how to use `mode: read_write` to replicate data to the Spice.ai platform.
+
+```bash
+telegraf --config telegraf.conf
+```
+
+Show the collected data using `spice sql`.
+
+Run:
+
+```bash
+curl localhost:3000/v1/models/drive_stats/predict
+```
+
+Explain what just happened in the prediction result and performance. `prediction` means the life percent the disk is at now.
