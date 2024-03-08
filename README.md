@@ -70,6 +70,9 @@ Note that it takes about 2-3 seconds to complete. An improvement over the Playgr
 ### Step 2. Show getting started with Spice OSS and performance of local queries
 
 ```bash
+# Initialize the Spice app and show the generated spicepod.yaml
+spice init smart
+
 # Log in to the Spice.ai platform
 spice login
 
@@ -79,7 +82,47 @@ spice run
 
 Note, the runtime starts HTTP, Arrow Flight, and OTEL endpoints and that it needs a `spicepod.yaml`.
 
+Open another terminal window so the runtime can continue to run.
+
 ```bash
 # Add the lukekim/demo spicepod
 spice add lukekim/demo
 ```
+
+Note the four loaded datasets in the runtime logs.
+
+Open `/spicepods/lukekim/demo/spicepod.yaml` and show the dataset definitions.
+
+```bash
+# Start the Spice SQL REPL
+spice sql
+
+# Execute the show tables query
+sql> show tables;
++---------------+--------------------+--------------------------+------------+
+| table_catalog | table_schema       | table_name               | table_type |
++---------------+--------------------+--------------------------+------------+
+| datafusion    | public             | eth_recent_transactions  | BASE TABLE |
+| datafusion    | public             | eth_recent_traces        | BASE TABLE |
+| datafusion    | public             | eth_recent_blocks_duckdb | BASE TABLE |
+| datafusion    | public             | eth_recent_blocks        | BASE TABLE |
+| datafusion    | information_schema | tables                   | VIEW       |
+| datafusion    | information_schema | views                    | VIEW       |
+| datafusion    | information_schema | columns                  | VIEW       |
+| datafusion    | information_schema | df_settings              | VIEW       |
++---------------+--------------------+--------------------------+------------+
+
+Query took: 0.006861292 seconds
+```
+
+Note the four datasets from the Spicepod are now loaded.
+
+```bash
+# Execute a query on the recent blocks table
+sql> select * from eth_recent_blocks;
+
+# Exit the REPL
+sql> exit
+```
+
+Open `demo.py` again, comment out the first code block. Note line 28 `client = Client(SPICEAI_API_KEY, 'grpc://127.0.0.1:50051')` configuring the SDK to use the local Spice runtime.
