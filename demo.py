@@ -3,7 +3,7 @@ from time import sleep
 from spicepy import Client
 import threading
 
-SPICEAI_API_KEY = '3232|f42bb127dceb48cab83437264897b06a'
+SPICEAI_API_KEY = '3232|2ea664a9be804002af9b212021749439'
 LARGE_SQL_QUERY = 'SELECT * FROM eth.recent_traces trace JOIN eth.recent_transactions trans ON trace.transaction_hash = trans.hash ORDER BY trans.block_number DESC;'
 
 ###########################
@@ -12,16 +12,16 @@ LARGE_SQL_QUERY = 'SELECT * FROM eth.recent_traces trace JOIN eth.recent_transac
 
 # use API key from Spice.ai app to instantiate a client
 
-client = Client(SPICEAI_API_KEY)
+# client = Client(SPICEAI_API_KEY)
 
-startTime = time.time()
-data = client.query(LARGE_SQL_QUERY)
-pd = data.read_chunk()
-endTime = time.time()
+# startTime = time.time()
+# data = client.query(LARGE_SQL_QUERY)
+# pd = data.read_chunk()
+# endTime = time.time()
 
-print("Query Time: " + str(endTime - startTime) + " seconds\n")
+# print("Completed in {duration:.2f} seconds\n".format(duration = endTime - startTime))
 
-exit()
+# exit()
 
 ########################################
 #   DO NOT COMMENT OUT THE LINE BELOW  #
@@ -40,7 +40,7 @@ while True:
 
     print(pd.head(5))
  
-    print("Query Time: " + str(endTime - startTime) + " seconds\n")
+    print("Completed in {duration:.2f} seconds\n".format(duration = endTime - startTime))
 
     sleep(1)
 
@@ -55,7 +55,7 @@ while True:
     pd = data.read_pandas()
 
     print(pd.to_string() + "\n")
-    print("Query Time: " + str(endTime - startTime) + " seconds\n")
+    print("Completed in {duration:.2f} seconds\n".format(duration = endTime - startTime))
 
     startTime = time.time()
     data = client.query('SELECT count(*) FROM taxi_trips')
@@ -63,7 +63,7 @@ while True:
     pd = data.read_pandas()
 
     print(pd.to_string() + "\n")
-    print("Query Time: " + str(endTime - startTime) + " seconds\n")
+    print("Completed in {duration:.2f} seconds\n".format(duration = endTime - startTime))
 
 ###########################
 # Spice/Dremio Datasource #
@@ -85,7 +85,7 @@ while True:
     pd = data.read_pandas()
 
     print(pd.to_string() + "\n")
-    print("Query Time: " + str(endTime - startTime) + " seconds\n")
+    print("Completed in {duration:.2f} seconds\n".format(duration = endTime - startTime))
 
     sleep(5)
 

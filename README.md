@@ -66,3 +66,20 @@ python demo.py
 ```
 
 Note that it takes about 2-3 seconds to complete. An improvement over the Playground because it's using Apache Arrow Flight not HTTP/JSON.
+
+### Step 2. Show getting started with Spice OSS and performance of local queries
+
+```bash
+# Log in to the Spice.ai platform
+spice login
+
+# Start the Spice runtime
+spice run
+```
+
+Note, the runtime starts HTTP, Arrow Flight, and OTEL endpoints and that it needs a `spicepod.yaml`.
+
+```bash
+# Add the lukekim/demo spicepod
+spice add lukekim/demo
+```
