@@ -149,7 +149,26 @@ Show the collected data using `spice sql`.
 Run:
 
 ```bash
-curl localhost:3000/v1/models/drive_stats/predict
+curl localhost:3000/v1/models/drive_stats/predict | jq
 ```
 
 Explain what just happened in the prediction result and performance. `prediction` means the life percent the disk is at now.
+
+Run:
+
+```bash
+curl --request POST \
+  --url http://localhost:3000/v1/predict \
+  --header 'Content-Type: application/json' \
+  --header 'User-Agent: insomnia/8.6.0' \
+  --data '{
+    "predictions": [
+        {
+            "model_name": "drive_stats_v1"
+        },
+        {
+            "model_name": "drive_stats_v2"
+        }
+    ]
+}' | jq
+```
