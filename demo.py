@@ -33,7 +33,7 @@ client = Client(SPICEAI_API_KEY, 'grpc://127.0.0.1:50051')
 
 while True:
     startTime = time.time()
-    data = client.query('SELECT trace.block_timestamp, trace.block_number, trace.transaction_hash FROM eth_recent_traces trace JOIN eth_recent_transactions trans ON trace.transaction_hash = trans.hash ORDER BY trans.block_number DESC;')
+    data = client.query('SELECT trace.block_number, trace.block_timestamp, trace.transaction_hash FROM eth_recent_traces trace JOIN eth_recent_transactions trans ON trace.transaction_hash = trans.hash ORDER BY trans.block_number DESC;')
     pd = data.read_pandas()
     endTime = time.time()
 
