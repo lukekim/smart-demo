@@ -204,7 +204,7 @@ curl --request POST \
             "model_name": "drive_stats_v2"
         }
     ]
-}' | | jq -r '.predictions.[] | [.model_name, .status, .duration_ms, .prediction[0]] | @csv' | column -s, -t
+}' | jq -r '.predictions.[] | [.model_name, .status, .duration_ms, .prediction[0]] | @csv' | column -s, -t
 ```
 
 Explain why this is valuable (versioning, A/B testing, etc.) and the model lifecycle.
