@@ -87,13 +87,13 @@ Note, the runtime starts HTTP, Arrow Flight, and OTEL endpoints.
 Open another terminal window so the runtime can continue to run.
 
 ```bash
-# Add the lukekim/demo spicepod
-spice add lukekim/demo
+# Add the lukekim/smart spicepod
+spice add lukekim/smart
 ```
 
 Note the four loaded datasets in the runtime logs.
 
-Open `/spicepods/lukekim/demo/spicepod.yaml` and show the dataset definitions.
+Open `/spicepods/lukekim/smart/spicepod.yaml` and show the dataset definitions.
 
 ```bash
 # Start the Spice SQL REPL
